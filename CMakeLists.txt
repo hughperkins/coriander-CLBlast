@@ -27,7 +27,10 @@ SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 SET(CMAKE_MACOSX_RPATH TRUE)
 
 set(CORIANDER_DIR ${CMAKE_INSTALL_PREFIX})
-include($ENV{COCL_CMAKE}/cocl.cmake)
+# include($ENV{COCL_CMAKE}/cocl.cmake)
+include($ENV{COCL_CMAKE}/cocl_vars.cmake)
+include($ENV{COCL_CMAKE}/cocl_impl.cmake)
+include(${COCL_LIB}/cocl/cocl-targets.cmake)
 
 if(WIN32)
     set(CMAKE_CXX_FLAGS "/EHsc ${PLATFORM_OPTIONS}")
@@ -101,6 +104,8 @@ target_include_directories(corianderclblast PRIVATE src/CLBlast/include BEFORE)
 target_include_directories(corianderclblast SYSTEM BEFORE PRIVATE "${CORIANDER_DIR}/include/clew/proxy-headers")
 target_link_libraries(corianderclblast clblast cocl easycl clew)
 
+# for testing
+set(CORIANDERCLBLAST_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/include)
 add_subdirectory(test)
 
 CONFIGURE_FILE(
@@ -108,9 +113,9 @@ CONFIGURE_FILE(
     "${CMAKE_CURRENT_BINARY_DIR}/cmake/corianderclblast.cmake" @ONLY)
 INSTALL(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/cmake/corianderclblast.cmake DESTINATION share/cocl/coriander_plugins)
 
-INSTALL(FILES include/cudnn.h DESTINATION ${CORIANDER_DIR}/include/coriander_plugins/corianderclblast)
-FILE(GLOB DNN_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/include/coriander-dnn/*.h)
-INSTALL(FILES ${DNN_HEADERS} DESTINATION ${CORIANDER_DIR}/include/coriander_plugins/corianderclblast/coriander-dnn)
+INSTALL(FILES include/cublas_v2.h DESTINATION ${CORIANDER_DIR}/include/coriander_plugins/corianderclblast)
+FILE(GLOB DNN_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/include/coriander-clblast/*.h)
+INSTALL(FILES ${DNN_HEADERS} DESTINATION ${CORIANDER_DIR}/include/coriander_plugins/corianderclblast/coriander-clblast)
 
 install(TARGETS clblast corianderclblast EXPORT corianderclblast-targets
     LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/coriander_plugins

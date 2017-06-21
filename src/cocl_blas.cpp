@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "cocl/cocl_blas.h"
+#include "coriander-clblast/cocl_blas.h"
 
 #include "cocl/cocl_context.h"
 #include "cocl/hostside_opencl_funcs.h"
