@@ -19,8 +19,8 @@ SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 SET(CMAKE_MACOSX_RPATH TRUE)
 
 set(CORIANDER_DIR ${CMAKE_INSTALL_PREFIX})
-include($ENV{COCL_CMAKE}/cocl_vars.cmake)
-include($ENV{COCL_CMAKE}/cocl_impl.cmake)
+include(${CORIANDER_DIR}/share/cocl/cocl_vars.cmake)
+include(${CORIANDER_DIR}/share/cocl/cocl_impl.cmake)
 include(${COCL_LIB}/cocl/cocl-targets.cmake)
 
 if(WIN32)
