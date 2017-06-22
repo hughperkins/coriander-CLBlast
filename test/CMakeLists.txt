@@ -1,5 +1,19 @@
-# Designed to be run from the main CMakeLists.txt, in the root of the Coriander repo
+cmake_minimum_required(VERSION 3.0.0 FATAL_ERROR)
+
+# Originally designed to be run from the main CMakeLists.txt, in the root of the Coriander repo
 # via include(...)
+
+if(TARGET clblast)
+    # runnign embedded
+else()
+    # running standalone
+    include($ENV{COCL_CMAKE}/cocl_vars.cmake)
+    include($ENV{COCL_CMAKE}/cocl_impl.cmake)
+    include(${COCL_LIB}/cocl/cocl-targets.cmake)
+    include(${COCL_LIB}/coriander_plugins/corianderclblast-targets.cmake)
+endif()
+
+# Now designed to run standalone too
 
 set(TESTS_EXCLUDE EXCLUDE_FROM_ALL)
 if(BUILD_TESTS)
