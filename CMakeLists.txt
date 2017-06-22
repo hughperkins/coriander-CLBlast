@@ -108,6 +108,9 @@ INSTALL(FILES include/cublas_v2.h DESTINATION ${CORIANDER_DIR}/include/coriander
 FILE(GLOB DNN_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/include/coriander-clblast/*.h)
 INSTALL(FILES ${DNN_HEADERS} DESTINATION ${CORIANDER_DIR}/include/coriander_plugins/corianderclblast/coriander-clblast)
 
+FILE(GLOB CLBLAST_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/src/CLBlast/include/*.h)
+INSTALL(FILES ${CLBLAST_HEADERS} DESTINATION ${CORIANDER_DIR}/include/coriander_plugins/corianderclblast/CLBlast)
+
 install(TARGETS clblast corianderclblast EXPORT corianderclblast-targets
     LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/coriander_plugins
     ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/coriander_plugins
