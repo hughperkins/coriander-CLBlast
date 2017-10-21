@@ -64,9 +64,9 @@ std::size_t cublasDestroy(cublasHandle_t handle) {
 static CLBlastTranspose trans_cutocl(int trans) {
     if(trans == CUBLAS_OP_N) {
         return CLBlastTransposeNo;
-    } else if(trans == CUBLAS_OP_Y) {
-        return CLBlastTransposeYes;
     } else if(trans == CUBLAS_OP_T) {
+        return CLBlastTransposeYes;
+    } else if(trans == CUBLAS_OP_C) {
         return CLBlastTransposeConjugate;
     } else {
         cout << "trans value: " << trans << endl;
